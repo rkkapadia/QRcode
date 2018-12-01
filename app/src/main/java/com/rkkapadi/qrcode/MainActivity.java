@@ -1,5 +1,6 @@
 package com.rkkapadi.qrcode;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Environment;
@@ -23,7 +24,7 @@ import androidmads.library.qrgenearator.QRGSaver;
 public class MainActivity extends AppCompatActivity {
     String TAG = "GenerateQRCode";
     ImageView qrImage;
-    Button generate;
+    Button generate, scanBtn;
     String inputValue = "rajkapadia";
     Bitmap bitmap;
     QRGEncoder qrgEncoder;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         qrImage = (ImageView) findViewById(R.id.qrImageView);
         generate = (Button) findViewById(R.id.generateButton);
+        scanBtn = findViewById(R.id.scanQR);
 
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                 }
+            }
+        });
+
+        scanBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent scan = new Intent(MainActivity.this, ScanQRActivity.class);
+                startActivity(scan);
             }
         });
 
